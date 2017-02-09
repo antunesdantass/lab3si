@@ -46,4 +46,8 @@ public class ListaDeTarefaService {
         return repository.save(lista);
     }
 
+    public void deletarTodasListas() {
+        repository.deleteAll();
+    }
+
 }

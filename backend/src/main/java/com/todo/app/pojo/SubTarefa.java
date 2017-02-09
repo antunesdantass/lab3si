@@ -17,7 +17,6 @@ public class SubTarefa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private Long id;
     @Column
     @NotNull

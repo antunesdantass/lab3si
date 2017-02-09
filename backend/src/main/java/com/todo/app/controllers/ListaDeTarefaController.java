@@ -39,6 +39,14 @@ public class ListaDeTarefaController {
 
     @CrossOrigin
     @RequestMapping(
+            value = "/listas",
+            method = RequestMethod.DELETE)
+    public void deletarTodasAsListas() {
+        service.deletarTodasListas();
+    }
+
+    @CrossOrigin
+    @RequestMapping(
             value = "/listas/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
