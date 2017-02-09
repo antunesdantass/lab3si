@@ -1,0 +1,79 @@
+<h4><center>Suas Listas de Atividade</center></h4>
+
+<div>
+      <center>
+      <h4 ng-show="listas.length == 0"> Você ainda não possui listas! Acesse o menu de criação. </h4>
+      </center>
+
+</div>
+
+<center>
+
+<div ng-show="listas.length > 0">
+
+      <center>
+
+      <!-- Visualizar todas as listas -->
+
+      <table style="width: 700px" class="table table-hover">
+            <tr>
+                  <th><center>Listas</center></th>
+                  <th></th>
+            </tr>
+                  <tr ng-repeat="lista in listas">
+                  <td> <center> <button class="btn btn-primary" ng-click="mostraDetalhes(lista.id)"
+                  data-toggle="modal" data-target="#tarefaModal"> {{lista.nome}} </button> </center></td>
+            </tr>
+      </table>
+
+      <!-- Modal de Visualizar Lista Específica-->
+        <div id="tarefaModal" class="modal fade" role="dialog">
+           <div class="modal-dialog">
+
+           <!-- Modal content-->
+              <div class="modal-content">
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">{{ listaAtual.nome }}</h4>
+        </div>
+        <div class="modal-body">
+
+            <table class ="table table-striped" ng-show="listaAtual.tarefas.length > 0">
+                  <tr>
+                        <th>Atividade</th>
+                        <th>Descrição</th>
+                        <th>Prioridade</th>
+                        <th>Categoria</th>
+                  </tr>
+                  <tr ng-repeat="tarefa in listaAtual.tarefas">
+                        <td contenteditable="true">{{ tarefa.titulo }}</td>
+                        <td>{{ tarefa.descricao }}</td>
+                        <td>{{ tarefa.prioridade }}</td>
+                        <td>{{ tarefa.categoria }}</td>
+                  </tr>
+
+            </table>
+
+            <button class="btn btn-primary" data-dismiss="modal">Fechar</button>
+
+        </div>
+        <!-- Fim do Modal de Visualizar Lista Específica-->
+
+        </center>
+        <center>
+        <button class="btn btn-danger" ng-click="deletarTodasListas()" ng-show="listas.length > 0"> Deletar Listas </button>
+        </center>
+</center>
+
+   <table ng-show="activities.length > 0" class="table">
+        <tr>
+   	<th>Done</th>
+   	<th>Activities</th>
+        <th></th>
+   	</tr>
+        <tr ng-class="{done: activity.done}" ng-repeat="activity in activities">
+   	<td><input type="checkbox" ng-model="activity.done"/></td>
+   	<td>{{activity.title}}</td>
+        <td><button class="glyphicon glyphicon-remove" ng-click="removeAtividade(activity)"></button></td>
+   	</tr>
+   </table>

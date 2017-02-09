@@ -1,0 +1,99 @@
+<div>
+        <center>
+
+        <h4> Criar nova lista </h4>
+        <form style="width: 500px" name="listaDeAtividadeForm">
+                <input class="form-control" type="text" ng-model="listaDeAtividade.nome" placeholder="Nome da Lista" ng-required="true" />
+        </form>
+        <button class="btn btn-primary" ng-click="addLista(listaDeAtividade)" 
+                        ng-disabled="listaDeAtividadeForm.$invalid">Adicionar Lista
+        </button>
+        <h1></h1>
+        </center>        
+
+</div>
+
+<div ng-hide="formNSubmetido()">
+
+<!-- Trigger the modal with a button -->
+
+        <center>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addTarefaModal"
+         >Adicionar Tarefa na Lista</button>
+
+        <!-- Modal -->
+        <div id="addTarefaModal" class="modal fade" role="dialog">
+           <div class="modal-dialog">
+
+           <!-- Modal content-->
+              <div class="modal-content">
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Adicionar Tarefa</h4>
+        </div>
+        <div class="modal-body">
+
+                <form name="tituloForm">
+                        <input class="form-control" type="text" ng-model="tarefa.titulo" placeholder="Título" ng-required="true" />
+                </form>
+
+                <form name="tarefaForm">
+                        <input class="form-control" type="text" ng-model="tarefa.descricao" placeholder="Descrição" ng-required="false" />
+                </form>
+                
+                <form name="tarefaForm">
+                        <input class="form-control" type="text" ng-model="tarefa.categoria" placeholder="Categoria" ng-required="false" />
+                </form>
+
+                <div class="input-group">                                            
+                        <input placeholder="Prioridade" type="TextBox" ID="prioridadeBox" Class="form-control"></input>
+                                <div class="input-group-btn">
+                                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                        </button>
+                                        <ul id="demolist" class="dropdown-menu text-center">
+                                        <li><a href="#">Baixa</a></li>
+                                        <li><a href="#">Media</a></li>
+                                        <li><a href="#">Alta</a></li>
+                                        </ul>
+                                </div>
+                </div>
+
+                <h1></h1>
+
+                <h1></h1>
+
+                <div ng-show="subTarefas.length > 0"> 
+                        <table class="table table-striped" "text-center">
+                                <tr>
+                                <th>Sub-tarefas</th>
+                                </tr>
+                                <tr ng-repeat="subTarefa in subTarefas">
+                                <td>{{subTarefa.descricao}}</td>
+                                </tr>
+                        </table>
+                </div>
+
+                <form name="subTarefaForm">
+                        <input class="form-control" type="text" ng-model="subTarefa.descricao" placeholder="Sub-tarefa" />
+                </form>
+
+                <button class="btn btn-primary" ng-click="addSubTarefa(subTarefa)"
+                        ng-disabled="subTarefaForm.$invalid">Adicionar Sub-tarefa
+                </button>
+
+                <button class="btn btn-primary" ng-click="addTarefa(tarefa)" 
+                        ng-disabled="tituloForm.$invalid" data-dismiss="modal">Adicionar Tarefa
+                </button>
+
+
+        </div>
+
+        <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+              </div>
+              </div>
+        </div>
+        </center>
+</div>

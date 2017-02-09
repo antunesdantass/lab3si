@@ -1,0 +1,48 @@
+<!-- index.html -->
+    <!DOCTYPE html>
+    <html ng-app="todoApp">
+        <head>
+        <meta charset="utf-8">
+        <!-- Carregando bootstrap e fontawesome -->
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- Carregando o Angular e Angular Route -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+        <script src="lib/angular/angular-route.js"></script>
+        <script src="javascript/todoApp.js"></script>
+        <script src="javascript/controllers/todoController.js"></script>
+        <script src="javascript/controllers/criarController.js"></script>
+        <script src="javascript/controllers/sobreController.js"></script>
+        </head>
+
+    <body ng-controller="todoController">
+
+    <!-- Cabeçalho e navbar -->
+    <header>
+        <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Todo List</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/listas"><i class="fa fa-home"></i> Listas</a></li>
+                <li><a href="/criar"><i class="fa fa-list"></i> Criar Nova Lista</a></li>
+                <li><a href="/sobre"><i class="fa fa-info"></i> Sobre</a></li>
+            </ul>
+        </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo da página e views que serão injetadas -->
+    <div id="main">
+        <div ng-view></div>
+    </div>
+
+    </body>
+    </html>
