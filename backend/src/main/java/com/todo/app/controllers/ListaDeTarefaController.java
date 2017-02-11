@@ -80,6 +80,14 @@ public class ListaDeTarefaController {
 
     @CrossOrigin
     @RequestMapping(
+            value = "/listas/{id}",
+            method = RequestMethod.DELETE)
+    public void deletarListaEspecifica(@PathVariable("id") Long id) {
+        service.deletarListaEspecifica(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(
             value = "/listas/{idLista}/{idTarefa}/",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -88,6 +96,49 @@ public class ListaDeTarefaController {
                                                       @RequestBody SubTarefa subTarefa) {
         ListaDeTarefa lista = service.addSubTarefaNaLista(idLista, idTarefa, subTarefa);
         return new ResponseEntity<ListaDeTarefa>(lista, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(
+            value = "/listas/{idLista}",
+            method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public void atualizarTarefa(@PathVariable("idLista") Long idLista, @RequestBody Tarefa tarefa) {
+        service.atualizarTarefaDaLista(idLista, tarefa);
+    }
+
+    @CrossOrigin
+    @RequestMapping(
+            value = "/listas/{idLista}/{idTarefa}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Tarefa> getTarefaDaLista(@PathVariable("idLista") Long idLista,
+                                                   @PathVariable("idTarefa") Long idTarefa) {
+        Tarefa tarefa = service.getTarefaDaLista(idLista, idTarefa);
+        return new ResponseEntity<Tarefa>(tarefa, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(
+            value = "/listas/{idLista}/{idTarefa}",
+            method = RequestMethod.DELETE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ListaDeTarefa> deletarTarefaDeUmaLista(@PathVariable("idLista") Long idLista,
+                                        @PathVariable("idTarefa") Long idTarefa) {
+            ListaDeTarefa lista = service.deletaTarefaDeLista(idLista, idTarefa);
+            return new ResponseEntity<ListaDeTarefa>(lista, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(
+            value = "/listas/{idLista}/{idTarefa}/{idSubTarefa}",
+            method = RequestMethod.DELETE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Tarefa> deletaSubTarefa(@PathVariable("idLista") Long idLista,
+                                                  @PathVariable("idTarefa") Long idTarefa,
+                                                  @PathVariable("idSubTarefa") Long idSubTarefa) {
+        Tarefa tarefa = service.deletarSubTarefa(idLista, idTarefa, idSubTarefa);
+        return new ResponseEntity<Tarefa>(tarefa, HttpStatus.OK);
     }
 
 }

@@ -50,4 +50,32 @@ public class ListaDeTarefaService {
         repository.deleteAll();
     }
 
+    public void deletarListaEspecifica(Long id) {
+        repository.delete(id);
+    }
+
+    public ListaDeTarefa deletaTarefaDeLista(Long idLista, Long idTarefa) {
+        ListaDeTarefa lista = repository.findOne(idLista);
+        Tarefa tarefa = lista.getTarefa(idTarefa);
+        lista.removeTarefa(tarefa);
+        lista = repository.saveAndFlush(lista);
+        return lista;
+    }
+
+    public Tarefa deletarSubTarefa(Long idLista, Long idTarefa, Long idSubTarefa) {
+        ListaDeTarefa lista = repository.findOne(idLista);
+        Tarefa tarefa = lista.removeSubTarefa(idTarefa, idSubTarefa);
+        repository.saveAndFlush(lista);
+        return tarefa;
+    }
+
+    public Tarefa getTarefaDaLista(Long idLista, Long idTarefa) {
+        ListaDeTarefa lista = repository.findOne(idLista);
+        return lista.getTarefa(idTarefa);
+    }
+
+    public void atualizarTarefaDaLista(Long idLista, Tarefa tarefa) {
+        ListaDeTarefa lista = repository.findOne(idLista);
+    }
+
 }

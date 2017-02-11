@@ -65,4 +65,15 @@ public class ListaDeTarefa {
         }
         return null;
     }
+
+    public Tarefa removeSubTarefa(Long idTarefa, Long idSubTarefa) {
+        Tarefa tarefa = getTarefa(idTarefa);
+        tarefa.removeSubTarefa(idSubTarefa);
+        return tarefa;
+    }
+
+    public void atualizaTarefa(Tarefa tarefa) {
+        tarefas.remove(tarefa);
+        tarefas.add(tarefa);
+    }
 }

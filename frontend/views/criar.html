@@ -6,7 +6,7 @@
                 <input class="form-control" type="text" ng-model="listaDeAtividade.nome" placeholder="Nome da Lista" ng-required="true" />
         </form>
         <button class="btn btn-primary" ng-click="addLista(listaDeAtividade)" 
-                        ng-disabled="listaDeAtividadeForm.$invalid">Adicionar Lista
+                       ng-hide="listaDeAtividadeForm.$submitted" ng-disabled="listaDeAtividadeForm.$invalid">Adicionar Lista
         </button>
         <h1></h1>
         </center>        

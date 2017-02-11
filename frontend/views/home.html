@@ -1,4 +1,4 @@
-<h4><center>Suas Listas de Atividade</center></h4>
+<h4 ng-hide="listas.length == 0"><center>Suas Listas de Atividade</center></h4>
 
 <div>
       <center>
@@ -15,14 +15,15 @@
 
       <!-- Visualizar todas as listas -->
 
-      <table style="width: 700px" class="table table-hover">
+      <table style="width: 700px" class="table table-striped">
             <tr>
                   <th><center>Listas</center></th>
-                  <th></th>
+                  <th>Deletar</th>
             </tr>
                   <tr ng-repeat="lista in listas">
                   <td> <center> <button class="btn btn-primary" ng-click="mostraDetalhes(lista.id)"
                   data-toggle="modal" data-target="#tarefaModal"> {{lista.nome}} </button> </center></td>
+                  <td> <i class="fa fa-trash-o fa-2x" aria-hidden="true" ng-click="deletarLista(lista.id)"></i> </td>
             </tr>
       </table>
 
@@ -40,20 +41,59 @@
 
             <table class ="table table-striped" ng-show="listaAtual.tarefas.length > 0">
                   <tr>
+                        <th></th>
                         <th>Atividade</th>
                         <th>Descrição</th>
                         <th>Prioridade</th>
                         <th>Categoria</th>
+                        <th>Subtarefas</th>
+                        <th></th>
                   </tr>
                   <tr ng-repeat="tarefa in listaAtual.tarefas">
-                        <td contenteditable="true">{{ tarefa.titulo }}</td>
+                        <td><input type="checkbox" ng-model="tarefa.feita"/></td>
+                        <td>{{ tarefa.titulo }}</td>
                         <td>{{ tarefa.descricao }}</td>
                         <td>{{ tarefa.prioridade }}</td>
                         <td>{{ tarefa.categoria }}</td>
+                        <td> <i class="fa fa-list-ul fa2x"aria-hidden="true"
+                              ng-click="mostraTarefaDetalhes(tarefa.id)" data-toggle="modal" data-target="#subTarefaModal">
+                              </i>
+                        </td>
+                        <td> <i class="fa fa-trash-o fa-2x" aria-hidden="true" ng-click="deletarTarefaLista(tarefa.id)"></i> </td>
                   </tr>
 
             </table>
+            <button class="btn btn-danger" ng-click="deletarLista(listaAtual.id)" data-dismiss="modal">Deletar Lista</button>
+            <button class="btn btn-primary" data-dismiss="modal">Fechar</button>
 
+        </div>
+        <!-- Fim do Modal de Visualizar Atividade Específica-->
+
+        <!-- Modal de Visualizar Subtarefas-->
+        <div id="subTarefaModal" class="modal fade" role="dialog">
+           <div class="modal-dialog">
+
+           <!-- Modal content-->
+              <div class="modal-content">
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Sub-Tarefas</h4>
+        </div>
+        <div class="modal-body">
+
+            <table class ="table table-striped" ng-show="tarefaAtual.subTarefas.length > 0">
+                  <tr>
+                        <th></th>
+                        <th>Descrição</th>
+                        <th></th>
+                  </tr>
+                  <tr ng-repeat="subTarefa in tarefaAtual.subTarefas">
+                        <td><input type="checkbox" ng-model="subTarefa.feita"/></td>
+                        <td>{{ subTarefa.descricao }}</td>
+                        <td> <i class="fa fa-trash-o fa-2x" aria-hidden="true" ng-click="deletarSubTarefaLista(subTarefa.id)"></i> </td>
+                  </tr>
+
+            </table>
             <button class="btn btn-primary" data-dismiss="modal">Fechar</button>
 
         </div>

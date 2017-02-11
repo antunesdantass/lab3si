@@ -2,6 +2,7 @@ todoApp.controller('criarController', ['$scope', '$http', function($scope, $http
 
     var listaId;
     var tarefaId;
+    $scope.mostrarForm = false;
     
     $scope.subTarefas = [];
 
@@ -50,6 +51,10 @@ todoApp.controller('criarController', ['$scope', '$http', function($scope, $http
             $scope.subTarefas = [];
         });
     };
+ 
+    $scope.processarForm = function() {
+        $scope.mostrarForm = true;
+}
 
     $('#demolist li').on('click', function(){
         $('#prioridadeBox').val($scope.tarefa.prioridade = $(this).text());
